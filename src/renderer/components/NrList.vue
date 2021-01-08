@@ -22,9 +22,11 @@ export default {
         copy(item) {
             this.$copyText(item);
             this.$emit('copied');
-            console.log('heya------------------------');
-            console.log('emmited');
-            console.log('------------------------yahe');
+        },
+    },
+    watch: {
+        itemList() {
+            this.$emit('resize');
         },
     },
 };

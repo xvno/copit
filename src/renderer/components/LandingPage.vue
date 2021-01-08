@@ -1,6 +1,6 @@
 <template>
     <div id="wrapper">
-        <main>
+        <main ref="box">
             <div class="row">
                 <div
                     class="mag"
@@ -11,13 +11,14 @@
                 >
                     {{ item.mag }}
                 </div>
-                <div class="mag close" @click="getSize()">...</div>
-                <div class="mag close" @click="showCloseDialogue()">X</div>
+                <!-- <div class="mag close" @click="getSize()">...</div> -->
+                <div class="mag close" @click="close()">X</div>
             </div>
             <div class="row">
                 <nr-list
                     :itemList="itemList"
                     v-on:copied="hideUp()"
+                    v-on:resize="resize()"
                 ></nr-list>
             </div>
         </main>
@@ -138,8 +139,7 @@ export default {
         };
     },
     created() {
-        this.$on('COPIED', function () {
-        });
+        this.$on('COPIED', function () {});
     },
     methods: {
         open(link) {
@@ -149,7 +149,7 @@ export default {
             console.log(mag);
             this.itemList = mag;
         },
-        hideUp(){
+        hideUp() {
             this.itemList = [];
         },
         showCloseDialogue() {
@@ -161,6 +161,14 @@ export default {
         getSize() {
             let rect = this.appdom.getClientRects()[0];
             ipcRenderer.send('FRAME', `${rect.width},${rect.height}`);
+        },
+        resize() {
+            setTimeout(() => {
+                let box = this.$refs['box'];
+                let msg = `${box.clientWidth}, ${box.clientHeight}`;
+                console.log('resized: ... ', msg);
+                ipcRenderer.send('RESIZE', msg);
+            });
         },
     },
     computed: {

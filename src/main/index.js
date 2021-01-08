@@ -1,5 +1,6 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
-
+const WIDTH = 1000;
+const HEIGHT = 26;
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -23,10 +24,10 @@ function createWindow() {
      * Initial window options
      */
     mainWindow = new BrowserWindow({
-        height: 563,
-        width: 1000,
+        height: HEIGHT,
+        width: WIDTH,
         useContentSize: true,
-        frame: false,
+        frame: false
         // transparent: true
     });
     // mainWindow.setAlwaysOnTop();
@@ -63,9 +64,10 @@ ipcMain.on('USER', (event, args) => {
     }
 });
 
-ipcMain.on('FRAME', (event, args) => {
+ipcMain.on('RESIZE', (event, args) => {
     let [width, height] = args.split(',');
     console.log(width, height);
+    mainWindow.setSize(WIDTH, +height);
 });
 /**
  * Auto Updater
