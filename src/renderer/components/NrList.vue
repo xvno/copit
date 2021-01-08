@@ -43,6 +43,7 @@ export default {
         color: white;
         border: 1px solid #aaaaaa;
         padding: 2px;
+        font-size: 14px;
     }
     .container .item:hover {
         background-color: #333333;
