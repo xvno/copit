@@ -234,7 +234,7 @@ export default {
         -ms-overflow-style: none;
     }
     main::-webkit-scrollbar {
-        width: 0 !impoartant;
+        width: 0 !important;
     }
 
     .mag {
