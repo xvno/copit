@@ -5,7 +5,7 @@
                 <div
                     class="mag"
                     v-for="item in xdata"
-                    data-hash="{item.hash}"
+                    :data-hash="item.mag"
                     :key="item.hash"
                     @mouseenter="showUp(item)"
                     :active="item.active"
@@ -15,7 +15,7 @@
                 <!-- <div class="mag close" @click="getSize()">...</div> -->
                 <div class="mag close" @click="close()">X</div>
             </div>
-            <div class="row">
+            <div class="row" style="-webkit-app-region: no-drag;">
                 <nr-list
                     :itemList="itemList"
                     v-on:copied="hideUp()"
@@ -203,7 +203,10 @@ export default {
         margin: 0;
         padding: 0;
     }
-
+    *::-webkit-scrollbar {
+        width: 0 !important;
+        height: 0 !important;
+    }
     body {
         font-family: 'Source Sans Pro', sans-serif;
     }
@@ -228,10 +231,15 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        -ms-overflow-style: none;
+    }
+    main::-webkit-scrollbar {
+        width: 0 !impoartant;
     }
 
     .mag {
         /* display: inline-block; */
+        -webkit-app-region: no-drag;
         color: white;
         font-size: 14px;
         line-height: 16px;

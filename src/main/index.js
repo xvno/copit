@@ -27,8 +27,8 @@ function createWindow() {
         height: HEIGHT,
         width: WIDTH,
         useContentSize: true,
-        frame: false
-        // transparent: true
+        frame: false,
+        transparent: true
     });
     // mainWindow.setAlwaysOnTop();
     mainWindow.setAlwaysOnTop(true, 'pop-up-menu');

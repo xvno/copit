@@ -47,5 +47,6 @@ export default {
     }
     .container .item:hover {
         background-color: #333333;
+        cursor: pointer;
     }
 </style>
