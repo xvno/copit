@@ -8,6 +8,7 @@
                     data-hash="{item.hash}"
                     :key="item.hash"
                     @mouseenter="showUp(item)"
+                    :active="item.active"
                 >
                     {{ item.mag }}
                 </div>
@@ -146,11 +147,13 @@ export default {
             this.$electron.shell.openExternal(link);
         },
         showUp(mag) {
-            console.log(mag);
+            console.log(arguments);
             this.hideUp();
             this.itemList = mag;
+            mag.active = true;
         },
         hideUp() {
+            this.itemList.active = false;
             this.itemList = [];
         },
         showCloseDialogue() {
@@ -248,5 +251,8 @@ export default {
         background-color: #aaaaaa;
         -webkit-user-select: none;
         -webkit-app-region: drag;
+    }
+    .mag[active='true'] {
+        background-color: #333333;
     }
 </style>
