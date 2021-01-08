@@ -1,13 +1,13 @@
 <template>
     <div id="wrapper">
-        <main ref="box">
+        <main ref="box" @mouseleave="hideUp()">
             <div class="row">
                 <div
                     class="mag"
                     v-for="item in xdata"
                     data-hash="{item.hash}"
                     :key="item.hash"
-                    @click="showUp(item)"
+                    @mouseenter="showUp(item)"
                 >
                     {{ item.mag }}
                 </div>
@@ -147,6 +147,7 @@ export default {
         },
         showUp(mag) {
             console.log(mag);
+            this.hideUp();
             this.itemList = mag;
         },
         hideUp() {
