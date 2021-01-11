@@ -2,11 +2,11 @@
     <div class="container">
         <div
             v-for="item in itemList.children"
-            :key="item"
-            class="item"
+            :key="item.hash"
+            :class="item.isTitle ? 'item title' : 'item'"
             @click="copy(item)"
         >
-            {{ item }}
+            {{ item.msg }}
         </div>
     </div>
 </template>
@@ -20,8 +20,10 @@ export default {
     },
     methods: {
         copy(item) {
-            this.$copyText(item);
-            this.$emit('copied');
+            if (!item.isTitle) {
+                this.$copyText(item.msg);
+                this.$emit('copied');
+            }
         },
     },
     watch: {
@@ -37,16 +39,46 @@ export default {
         display: flex;
         flex-direction: column;
         width: 100%;
+        font-family: 'Yahe', 'Times New Roman', Times, serif;
     }
     .container .item {
-        background-color: #aaaaaa;
+        background-color: #8080ff;
         color: white;
-        border: 1px solid #aaaaaa;
+        /* border: 1px solid #8080ff; */
         padding: 2px;
         font-size: 14px;
     }
     .container .item:hover {
-        background-color: #333333;
+        background-color: #ffffff;
+        color: #8080ff;
         cursor: pointer;
+    }
+
+    .container .title {
+        text-align: center;
+    }
+    .container .title {
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+    }
+    .container .title:before,
+    .container .title:after {
+        content: '';
+        flex: 1 1;
+        border-bottom: 1px solid #ffffff;
+        margin: auto;
+    }
+    .container .title:before {
+        margin-right: 10px;
+    }
+    .container .title:after {
+        margin-left: 10px;
+    }
+    .container .title:hover {
+        background-color: #8080ff;
+        color: white;
+
+        cursor: default;
     }
 </style>

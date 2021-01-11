@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 const WIDTH = 1000;
 const HEIGHT = 26;
+const MAX_HEIGHT = 600;
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -38,9 +39,6 @@ function createWindow() {
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
-    console.log('heya------------------------');
-    console.log(process.platform);
-    console.log('------------------------yahe');
 }
 
 app.on('ready', createWindow);
@@ -67,7 +65,9 @@ ipcMain.on('USER', (event, args) => {
 ipcMain.on('RESIZE', (event, args) => {
     let [width, height] = args.split(',');
     console.log(width, height);
-    mainWindow.setSize(WIDTH, +height);
+    height = +height;
+    height = height > MAX_HEIGHT ? MAX_HEIGHT : height;
+    mainWindow.setSize(WIDTH, height);
 });
 /**
  * Auto Updater
