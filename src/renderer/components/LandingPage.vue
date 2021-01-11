@@ -768,6 +768,8 @@ export default {
         -webkit-user-select: none;
         -webkit-app-region: drag;
         /* border: 1px solid #FFFFFF; */
+        max-height: 500px;
+        overflow: scroll;
     }
 
     .mag {
