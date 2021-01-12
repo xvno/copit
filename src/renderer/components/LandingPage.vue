@@ -13,7 +13,9 @@
                     {{ item.mag }}
                 </div>
                 <!-- <div class="mag close" @click="getSize()">...</div> -->
-                <div class="mag close" @click="close()">X</div>
+                <div class="mag close" @click="close()">
+                    <i class="el-icon-close"></i>
+                </div>
             </div>
             <div class="row" style="-webkit-app-region: no-drag">
                 <nr-list
@@ -361,7 +363,9 @@ export default {
                         },
                         {
                             msg:
-                                '1、深度保洁针对长时间未打扫、有人居住的全屋场景，主要以更深层次的保洁服务为主。\n2、长时间无人居住-定义为深度保洁。\n3、家里饲养宠物"', isTitle: false },
+                                '1、深度保洁针对长时间未打扫、有人居住的全屋场景，主要以更深层次的保洁服务为主。\n2、长时间无人居住-定义为深度保洁。\n3、家里饲养宠物"',
+                            isTitle: false,
+                        },
                         { msg: '优选保洁', isTitle: true },
                         {
                             msg:
@@ -791,6 +795,7 @@ export default {
     }
     .mag.close {
         float: right;
+        border: none;
     }
     .mag[active='true'] {
         background-color: #ffffff;
